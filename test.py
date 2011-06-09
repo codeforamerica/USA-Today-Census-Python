@@ -79,6 +79,13 @@ class TestLocationMethod(unittest.TestCase):
                         'locations?api_key=my_fake_api_key')
         self.assertEquals(url, expected_url)
 
+    def test_locations_method_with_keypat_arg(self):
+        Census().locations('TX')
+        url = called_url()
+        expected_url = ('http://api.usatoday.com/open/census/'
+                        'locations?api_key=my_fake_api_key&keypat=TX')
+        self.assertEquals(url, expected_url)
+
     def test_locations_method_with_kwargs(self):
         Census().locations(hello='world')
         url = called_url()
@@ -99,6 +106,13 @@ class TestEthnicityMethod(unittest.TestCase):
                         'ethnicity?api_key=my_fake_api_key')
         self.assertEquals(url, expected_url)
 
+    def test_ethnicity_method_with_keypat_arg(self):
+        Census().ethnicity('TX')
+        url = called_url()
+        expected_url = ('http://api.usatoday.com/open/census/'
+                        'ethnicity?api_key=my_fake_api_key&keypat=TX')
+        self.assertEquals(url, expected_url)
+
 
 class TestHousingMethod(unittest.TestCase):
 
@@ -109,7 +123,14 @@ class TestHousingMethod(unittest.TestCase):
         Census().housing()
         url = called_url()
         expected_url = ('http://api.usatoday.com/open/census/'
-                        'ethnicity?api_key=my_fake_api_key')
+                        'housing?api_key=my_fake_api_key')
+        self.assertEquals(url, expected_url)
+
+    def test_housing_method_with_keypat_arg(self):
+        Census().housing('TX')
+        url = called_url()
+        expected_url = ('http://api.usatoday.com/open/census/'
+                        'housing?api_key=my_fake_api_key&keypat=TX')
         self.assertEquals(url, expected_url)
 
 
@@ -125,6 +146,13 @@ class TestPopulationMethod(unittest.TestCase):
                         'population?api_key=my_fake_api_key')
         self.assertEquals(url, expected_url)
 
+    def test_population_method_with_keypat_arg(self):
+        Census().population('TX')
+        url = called_url()
+        expected_url = ('http://api.usatoday.com/open/census/'
+                        'population?api_key=my_fake_api_key&keypat=TX')
+        self.assertEquals(url, expected_url)
+
 
 class TestRaceMethod(unittest.TestCase):
 
@@ -136,6 +164,13 @@ class TestRaceMethod(unittest.TestCase):
         url = called_url()
         expected_url = ('http://api.usatoday.com/open/census/'
                         'race?api_key=my_fake_api_key')
+        self.assertEquals(url, expected_url)
+
+    def test_race_method_with_keypat_arg(self):
+        Census().race('TX')
+        url = called_url()
+        expected_url = ('http://api.usatoday.com/open/census/'
+                        'race?api_key=my_fake_api_key&keypat=TX')
         self.assertEquals(url, expected_url)
 
 
