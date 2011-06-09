@@ -3,16 +3,6 @@
 """Unit tests for the USA Today Census API."""
 
 import unittest
-try:
-    from urlparse import urlparse, parse_qs
-except ImportError:  # pragma: no cover
-    try:
-        # For Python 3.
-        from urllib.parse import urlparse, parse_qs
-    except ImportError:
-        # For older versions of Python.
-        from urlparse import urlparse
-        from cgi import parse_qs
 
 from mock import Mock
 
