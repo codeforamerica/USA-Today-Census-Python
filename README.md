@@ -81,3 +81,10 @@ With your API Key saved:
     >>> # Race data for Rhode Island by county.
     ... c.race('RI', sumlevid=3)
 </code></pre>
+
+
+Copyright
+---------
+
+Copyright (c) 2010 Code for America Laboratories
+See LICENSE for details.
