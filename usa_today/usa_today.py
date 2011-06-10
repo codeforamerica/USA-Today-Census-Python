@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 
+"""
+Python wrapper for USA Today's Census API.
+
+USA Today Documentation:  http://developer.usatoday.com/docs/read/Census
+"""
+
 try:
     import json
 except ImportError:  # pragma: no cover
