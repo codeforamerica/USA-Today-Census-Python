@@ -86,5 +86,7 @@ With your API Key saved:
 Copyright
 ---------
 
-Copyright (c) 2010 Code for America Laboratories
-See LICENSE for details.
+Copyright (c) 2011 Code for America Laboratories
+
+See [LICENSE](https://github.com/codeforamerica/USA-Today-Census/blob/master/LICENSE.md)
+for details.
