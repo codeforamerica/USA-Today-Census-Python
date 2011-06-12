@@ -37,7 +37,7 @@ class Census(object):
             self.api_key = api_key
         self.base_url = 'http://api.usatoday.com/open/census'
 
-    def api(self, name, **kwargs):
+    def call_api(self, name, **kwargs):
         """
         Semi-internal method for calling USA Today's Census API. Most of the
         other methods rely on this method.
@@ -56,7 +56,7 @@ class Census(object):
         """Internal method to resolve URL structure."""
         if keypat:
             kwargs.update({'keypat': keypat})
-        return self.api(directory, **kwargs)
+        return self.call_api(directory, **kwargs)
 
     def locations(self, keypat=None, **kwargs):
         """

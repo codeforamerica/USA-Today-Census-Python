@@ -37,30 +37,30 @@ class TestCensusInitialization(unittest.TestCase):
         self.assertEquals(census.api_key, 'my_fake_api_key')
 
 
-class TestApiMethod(unittest.TestCase):
+class TestCallApiMethod(unittest.TestCase):
 
     def setUp(self):
         set_up_method_tests()
 
     def test_empty_api_method_fails(self):
-        self.assertRaises(TypeError, Census().api)
+        self.assertRaises(TypeError, Census().call_api)
 
     def test_api_method_with_locations_arg(self):
-        Census().api('locations')
+        Census().call_api('locations')
         url = called_url()
         expected_url = ('http://api.usatoday.com/open/census/'
                         'locations?api_key=my_fake_api_key')
         self.assertEquals(url, expected_url)
 
     def test_api_method_with_multiple_args(self):
-        Census().api('testing', hello='world')
+        Census().call_api('testing', hello='world')
         url = called_url()
         expected_url = ('http://api.usatoday.com/open/census/'
                         'testing?api_key=my_fake_api_key&hello=world')
         self.assertEquals(url, expected_url)
 
     def test_api_method_with_new_api_key(self):
-        Census('new_api_key').api('testing', hello='world')
+        Census('new_api_key').call_api('testing', hello='world')
         url = called_url()
         expected_url = ('http://api.usatoday.com/open/census/'
                         'testing?api_key=new_api_key&hello=world')
