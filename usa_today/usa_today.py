@@ -52,6 +52,12 @@ class Census(object):
         json_data = urlopen(api_url).read()
         return json.loads(json_data)
 
+    def _resolve_url(self, directory, keypat=None, **kwargs):
+        """Internal method to resolve URL structure."""
+        if keypat:
+            kwargs.update({'keypat': keypat})
+        return self.api(directory, **kwargs)
+
     def locations(self, keypat=None, **kwargs):
         """
         Returns all available ethnicity, housing, population and race
@@ -59,9 +65,7 @@ class Census(object):
 
         >>> Census().locations()
         """
-        if keypat:
-            kwargs.update({'keypat': keypat})
-        return self.api('locations', **kwargs)
+        self._resolve_url('locations', keypat, **kwargs)
 
     def ethnicity(self, keypat=None, **kwargs):
         """
@@ -73,9 +77,7 @@ class Census(object):
 
         >>> Census().ethnicity('CA', sumlevid=6)
         """
-        if keypat:
-            kwargs.update({'keypat': keypat})
-        return self.api('ethnicity', **kwargs)
+        self._resolve_url('ethnicity', keypat, **kwargs)
 
     def housing(self, keypat=None, **kwargs):
         """
@@ -86,9 +88,7 @@ class Census(object):
 
         >>> Census().housing('TX', sumlevid=3)
         """
-        if keypat:
-            kwargs.update({'keypat': keypat})
-        return self.api('housing', **kwargs)
+        self._resolve_url('housing', keypat, **kwargs)
 
     def population(self, keypat=None, **kwargs):
         """
@@ -100,9 +100,7 @@ class Census(object):
 
         >>> Census().population('RI')
         """
-        if keypat:
-            kwargs.update({'keypat': keypat})
-        return self.api('population', **kwargs)
+        self._resolve_url('population', keypat, **kwargs)
 
     def race(self, keypat=None, **kwargs):
         """
@@ -114,6 +112,4 @@ class Census(object):
 
         >>> Census().race('NY', sumlevid=3)
         """
-        if keypat:
-            kwargs.update({'keypat': keypat})
-        return self.api('race', **kwargs)
+        self._resolve_url('race', keypat, **kwargs)
