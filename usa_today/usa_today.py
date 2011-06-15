@@ -6,51 +6,20 @@ Python wrapper for USA Today's Census API.
 USA Today Documentation:  http://developer.usatoday.com/docs/read/Census
 """
 
-try:
-    import json
-except ImportError:  # pragma: no cover
-    # For older versions of Python.
-    import simplejson as json
-
-try:
-    from urllib import urlencode
-except ImportError:  # pragma: no cover
-    # For Python 3.
-    from urllib.parse import urlencode
-
-try:
-    from urllib2 import urlopen
-except ImportError:  # pragma: no cover
-    # For Python 3.
-    from urllib.request import urlopen
+from api import API
 
 from usa_today_api_key import API_KEY
 
 
-class Census(object):
+class Census(API):
     """Wrapper for USA Today's Census API."""
 
     def __init__(self, api_key=''):
-        if not api_key:
-            self.api_key = API_KEY
-        else:
-            self.api_key = api_key
+        super(Census, self).__init__(api_key)
         self.base_url = 'http://api.usatoday.com/open/census'
-
-    def call_api(self, name, **kwargs):
-        """
-        Semi-internal method for calling USA Today's Census API. Most of the
-        other methods rely on this method.
-
-        >>> Census().api('locations', keypat='KY')
-        """
-        url = [self.base_url]
-        url.append('/%s' % name)
-        kwargs.update({'api_key': self.api_key})
-        url.extend(['?', urlencode(kwargs)])
-        api_url = ''.join(url)
-        json_data = urlopen(api_url).read()
-        return json.loads(json_data)
+        if not self.api_key:
+            self.api_key = API_KEY
+        self.required_params = {'api_key': self.api_key}
 
     def _resolve_url(self, directory, keypat=None, **kwargs):
         """Internal method to resolve URL structure."""
