@@ -6,6 +6,7 @@ import unittest
 
 from mock import Mock
 
+from usa_today.api import api
 from usa_today import usa_today
 from usa_today import Census
 
@@ -13,8 +14,8 @@ from usa_today import Census
 def set_up_method_tests():
     """Cut down on boilerplate setup testing code."""
     usa_today.API_KEY = 'my_fake_api_key'
-    usa_today.urlopen = Mock()
-    usa_today.json = Mock()
+    api.urlopen = Mock()
+    api.json = Mock()
 
 
 class TestCensusInitialization(unittest.TestCase):
@@ -43,19 +44,19 @@ class TestCallApiMethod(unittest.TestCase):
         Census().call_api('locations')
         expected_url = ('http://api.usatoday.com/open/census/'
                         'locations?api_key=my_fake_api_key')
-        usa_today.urlopen.assert_called_with(expected_url)
+        api.urlopen.assert_called_with(expected_url)
 
     def test_api_method_with_multiple_args(self):
         Census().call_api('testing', hello='world')
         expected_url = ('http://api.usatoday.com/open/census/'
                         'testing?api_key=my_fake_api_key&hello=world')
-        usa_today.urlopen.assert_called_with(expected_url)
+        api.urlopen.assert_called_with(expected_url)
 
     def test_api_method_with_new_api_key(self):
         Census('new_api_key').call_api('testing', hello='world')
         expected_url = ('http://api.usatoday.com/open/census/'
                         'testing?api_key=new_api_key&hello=world')
-        usa_today.urlopen.assert_called_with(expected_url)
+        api.urlopen.assert_called_with(expected_url)
 
 
 class TestLocationMethod(unittest.TestCase):
@@ -67,19 +68,19 @@ class TestLocationMethod(unittest.TestCase):
         Census().locations()
         expected_url = ('http://api.usatoday.com/open/census/'
                         'locations?api_key=my_fake_api_key')
-        usa_today.urlopen.assert_called_with(expected_url)
+        api.urlopen.assert_called_with(expected_url)
 
     def test_locations_method_with_keypat_arg(self):
         Census().locations('TX')
         expected_url = ('http://api.usatoday.com/open/census/'
                         'locations?api_key=my_fake_api_key&keypat=TX')
-        usa_today.urlopen.assert_called_with(expected_url)
+        api.urlopen.assert_called_with(expected_url)
 
     def test_locations_method_with_kwargs(self):
         Census().locations(hello='world')
         expected_url = ('http://api.usatoday.com/open/census/'
                         'locations?api_key=my_fake_api_key&hello=world')
-        usa_today.urlopen.assert_called_with(expected_url)
+        api.urlopen.assert_called_with(expected_url)
 
 
 class TestEthnicityMethod(unittest.TestCase):
@@ -91,13 +92,13 @@ class TestEthnicityMethod(unittest.TestCase):
         Census().ethnicity()
         expected_url = ('http://api.usatoday.com/open/census/'
                         'ethnicity?api_key=my_fake_api_key')
-        usa_today.urlopen.assert_called_with(expected_url)
+        api.urlopen.assert_called_with(expected_url)
 
     def test_ethnicity_method_with_keypat_arg(self):
         Census().ethnicity('TX')
         expected_url = ('http://api.usatoday.com/open/census/'
                         'ethnicity?api_key=my_fake_api_key&keypat=TX')
-        usa_today.urlopen.assert_called_with(expected_url)
+        api.urlopen.assert_called_with(expected_url)
 
 
 class TestHousingMethod(unittest.TestCase):
@@ -109,13 +110,13 @@ class TestHousingMethod(unittest.TestCase):
         Census().housing()
         expected_url = ('http://api.usatoday.com/open/census/'
                         'housing?api_key=my_fake_api_key')
-        usa_today.urlopen.assert_called_with(expected_url)
+        api.urlopen.assert_called_with(expected_url)
 
     def test_housing_method_with_keypat_arg(self):
         Census().housing('TX')
         expected_url = ('http://api.usatoday.com/open/census/'
                         'housing?api_key=my_fake_api_key&keypat=TX')
-        usa_today.urlopen.assert_called_with(expected_url)
+        api.urlopen.assert_called_with(expected_url)
 
 
 class TestPopulationMethod(unittest.TestCase):
@@ -127,13 +128,13 @@ class TestPopulationMethod(unittest.TestCase):
         Census().population()
         expected_url = ('http://api.usatoday.com/open/census/'
                         'population?api_key=my_fake_api_key')
-        usa_today.urlopen.assert_called_with(expected_url)
+        api.urlopen.assert_called_with(expected_url)
 
     def test_population_method_with_keypat_arg(self):
         Census().population('TX')
         expected_url = ('http://api.usatoday.com/open/census/'
                         'population?api_key=my_fake_api_key&keypat=TX')
-        usa_today.urlopen.assert_called_with(expected_url)
+        api.urlopen.assert_called_with(expected_url)
 
 
 class TestRaceMethod(unittest.TestCase):
@@ -145,13 +146,13 @@ class TestRaceMethod(unittest.TestCase):
         Census().race()
         expected_url = ('http://api.usatoday.com/open/census/'
                         'race?api_key=my_fake_api_key')
-        usa_today.urlopen.assert_called_with(expected_url)
+        api.urlopen.assert_called_with(expected_url)
 
     def test_race_method_with_keypat_arg(self):
         Census().race('TX')
         expected_url = ('http://api.usatoday.com/open/census/'
                         'race?api_key=my_fake_api_key&keypat=TX')
-        usa_today.urlopen.assert_called_with(expected_url)
+        api.urlopen.assert_called_with(expected_url)
 
 
 if __name__ == '__main__':
